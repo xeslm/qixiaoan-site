@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>每日好句 · 祈小安 v1.0.1</title>
+<meta name="description" content="祈小安的每日好句：点一下换一句，可以复制，也能存成一张卡片带走。共 46 句。">
+<meta name="theme-color" content="#eef4f8">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/qixiaoan-avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/variables.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>try{var t=localStorage.getItem('qxa-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-page="quotes">
+
+<div class="preloader">
+  <div class="pre-inner">
+    <div style="position:relative"><div class="pre-moon"></div><div class="pre-orbit"><i></i></div></div>
+    <div class="pre-name grad-text">祈 小 安</div>
+    <div class="pre-bar"><i></i></div>
+    <div class="pre-pct">000%</div>
+  </div>
+</div>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-aurora"><span></span><span></span><span></span><span></span></div>
+<div class="bg-grid"></div>
+<div class="scroll-progress"></div>
+<div class="scrim"></div>
+
+<div class="app">
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div style="min-width:0">
+      <header class="topbar"></header>
+
+      <main class="main">
+        <div class="page-wrap">
+
+          <nav class="page-head reveal">
+            <div class="crumb"><a href="index.html">首页</a><span>/</span><b>每日好句</b></div>
+            <h1 class="display">今天想说给你的<span class="grad-text">一句话</span></h1>
+            <p class="lead">点卡片换一句，键盘上按 <b>R</b> 也行。想留下就复制走，或者存成一张卡片。</p>
+            <div class="row" style="margin-top:18px">
+              <span class="chip" data-tone="sakura">共 46 句</span>
+              <span class="chip" data-tone="lilac">点击刷新</span>
+              <span class="chip" data-tone="mint">可复制 / 可下载</span>
+            </div>
+            <i class="head-deco" data-art="moonish"></i>
+          </nav>
+
+          <!-- ===== 主卡片 ===== -->
+          <section class="section" id="stage">
+            <div class="quote-stage reveal" id="quote-stage" tabindex="0" role="button" aria-label="换一句好句">
+              <div class="quote-mark">&ldquo;</div>
+              <div class="quote-text flip" id="quote-text">正在想一句合适的话……</div>
+              <div class="quote-meta">
+                <span class="chip" data-tone="sakura" id="quote-tag">日常</span>
+                <span class="mono tiny muted" id="quote-count">01 / 46</span>
+                <span class="mono tiny muted">本次已换 <b id="quote-used">1</b> 次</span>
+                <span style="flex:1"></span>
+                <button class="btn small" id="quote-refresh"><i data-icon="refresh"></i>换一句</button>
+                <button class="btn ghost small" id="quote-copy"><i data-icon="copy"></i>复制</button>
+                <button class="btn ghost small" id="quote-download"><i data-icon="down"></i>存成卡片</button>
+              </div>
+              <div class="quote-hint">
+                <kbd>点击卡片</kbd><span>或按</span><kbd>R</kbd><span>换一句 · 下载的卡片是 1080×1350 的 PNG，适合直接发出去</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== 今日一句 ===== -->
+          <section class="section" id="today">
+            <div class="section-head reveal">
+              <span class="eyebrow"><i></i>TODAY</span>
+              <h2 class="section-title display">今日一句</h2>
+              <p class="section-sub">按日期固定，今天之内刷多少次都是同一句——这样它才像一句话，而不是随机数。</p>
+            </div>
+            <div class="card reveal d1" id="today-quote"></div>
+          </section>
+
+          <!-- ===== 好句墙 ===== -->
+          <section class="section" id="wall">
+            <div class="section-head row-between reveal">
+              <div class="stack" style="gap:8px">
+                <span class="eyebrow"><i></i>WALL</span>
+                <h2 class="section-title display">好句墙</h2>
+                <p class="section-sub" id="wall-sub">全部句库。点任意一句，会把它放到上面的主卡片里。</p>
+              </div>
+              <span class="badge"><span class="dot"></span>每日更新一句</span>
+            </div>
+            <div class="grid g-auto-sm" id="quote-wall"></div>
+          </section>
+
+          <!-- ===== 使用说明 ===== -->
+          <section class="section" id="how">
+            <div class="grid g-3">
+              <div class="card reveal d1">
+                <div class="card-title"><i class="ico" data-icon="refresh"></i>怎么换</div>
+                <p class="muted tiny">点主卡片任意位置，或者按键盘上的 R。
+                  点好句墙里的任意一张，也会把它调到主卡片上。</p>
+              </div>
+              <div class="card reveal d2">
+                <div class="card-title"><i class="ico" data-icon="copy"></i>怎么带走</div>
+                <p class="muted tiny">「复制」给你一段可以直接粘进 QQ 的文本；
+                  「存成卡片」会现场画一张 1080×1350 的图片，落款写着她的版本号。</p>
+              </div>
+              <div class="card reveal d3">
+                <div class="card-title"><i class="ico" data-icon="star"></i>句子的来历</div>
+                <p class="muted tiny">句库是按她的人设写的：叮嘱、陪伴、安抚、撒娇、夜话五类语气，
+                  长度都不超过 30 字，也不用她禁用的那些词。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="contact-card reveal">
+              <div class="row-between">
+                <div class="stack" style="gap:8px">
+                  <span class="eyebrow"><i></i>NEXT</span>
+                  <h2 class="section-title display">想让她真的回你一句</h2>
+                  <p class="muted">这些话在网页上是静止的。加上哥哥的 QQ，她就会自己开口。</p>
+                </div>
+                <div class="row">
+                  <a class="btn" href="contact.html"><i data-icon="mail"></i>联系祈安</a>
+                  <a class="btn ghost" href="index.html"><i data-icon="home"></i>回首页</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <footer class="footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<button class="to-top" aria-label="回到顶部"><i data-icon="up"></i></button>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/images.js"></script>
+<script src="assets/js/background.js"></script>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/quotes.js"></script>
+<script>
+/* 好句页：把 46 这个数字写实 */
+document.addEventListener("DOMContentLoaded", function () {
+  var n = (window.QXA && window.QXA.DAILY_QUOTES || []).length;
+  if (!n) return;
+  document.querySelectorAll(".chip").forEach(function (c) {
+    if (c.textContent.indexOf("共 46 句") === 0) c.textContent = "共 " + n + " 句";
+  });
+  var hint = document.getElementById("wall-sub");
+  if (hint) hint.textContent = "全部 " + n + " 句。点任意一句，会把它放到上面的主卡片里。";
+});
+</script>
+</body>
+</html>
