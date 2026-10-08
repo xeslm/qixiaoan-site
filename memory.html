@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>记忆系统 · 祈小安 v1.0.1</title>
+<meta name="description" content="祈小安的五层记忆：当下这一轮、短期上下文、连续对话记忆、主记忆库、知识图谱与归档。她靠什么记住你。">
+<meta name="theme-color" content="#eef4f8">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/qixiaoan-avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/variables.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>try{var t=localStorage.getItem('qxa-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-page="memory">
+
+<div class="preloader">
+  <div class="pre-inner">
+    <div style="position:relative"><div class="pre-moon"></div><div class="pre-orbit"><i></i></div></div>
+    <div class="pre-name grad-text">祈 小 安</div>
+    <div class="pre-bar"><i></i></div>
+    <div class="pre-pct">000%</div>
+  </div>
+</div>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-aurora"><span></span><span></span><span></span><span></span></div>
+<div class="bg-grid"></div>
+<div class="scroll-progress"></div>
+<div class="scrim"></div>
+
+<div class="app">
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div style="min-width:0">
+      <header class="topbar"></header>
+
+      <main class="main">
+        <div class="page-wrap">
+
+          <nav class="page-head reveal">
+            <div class="crumb"><a href="index.html">首页</a><span>/</span><b>记忆系统</b></div>
+            <h1 class="display">她靠什么<span class="grad-text">记得住你</span></h1>
+            <p class="lead">记忆由两个插件分工：一个负责把关于你的事实稳稳记住，
+              一个负责让这些事实在对的时候被想起来。</p>
+            <div class="row" style="margin-top:18px">
+              <span class="badge"><span class="dot"></span>记忆插件运行中</span>
+              <span class="chip" data-tone="sakura">我会牢牢记住你 v1.10.5</span>
+              <span class="chip" data-tone="gold">我会永远陪着你 v6.5.6</span>
+            </div>
+            <i class="head-deco" data-art="blocks"></i>
+          </nav>
+
+          <!-- ===== 五层记忆 ===== -->
+          <section class="section" id="layers">
+            <div class="section-head reveal">
+              <span class="eyebrow"><i></i>MEMORY STACK</span>
+              <h2 class="section-title display">五层记忆</h2>
+              <p class="section-sub">从「刚刚这一句」到「很久以前的事」，五层各有各的寿命与用途。</p>
+            </div>
+            <div class="memory-layers" id="memory-layers"></div>
+          </section>
+
+          <!-- ===== 分工 ===== -->
+          <section class="section" id="duty">
+            <div class="section-head reveal">
+              <span class="eyebrow"><i></i>DIVISION</span>
+              <h2 class="section-title display">两个插件怎么分工</h2>
+            </div>
+            <div class="grid g-2">
+              <div class="card tilt reveal d1" data-tone="sakura">
+                <span class="card-glow" style="background:radial-gradient(420px circle at var(--x,50%) var(--y,50%), rgba(255,255,255,.5), transparent 60%)"></span>
+                <div class="plugin-top" style="margin-bottom:12px">
+                  <div class="plugin-ico"><i data-icon="memory" style="width:30px;height:30px"></i></div>
+                  <div>
+                    <div class="plugin-name">我会牢牢记住你<span class="plugin-ver">v1.10.5</span></div>
+                    <div class="plugin-alias">memory_companion · 记事实</div>
+                  </div>
+                </div>
+                <p class="plugin-tagline">「你说的每一句关于你自己的话，我都收着」</p>
+                <ul class="plugin-feats" style="margin-top:12px">
+                  <li>主记忆注入：关键事实稳定写进上下文</li>
+                  <li>历史聊天整理：长对话自动归档压缩</li>
+                  <li>连续对话记忆：跨会话延续话题</li>
+                  <li>知识图谱：人物、事件、偏好织成关系网</li>
+                  <li>主动回忆工具：她可以自己去翻以前聊过的事</li>
+                  <li>权限边界与自然衰减：旧事会淡，重要的留着</li>
+                </ul>
+              </div>
+
+              <div class="card tilt reveal d2" data-tone="gold">
+                <span class="card-glow" style="background:radial-gradient(420px circle at var(--x,50%) var(--y,50%), rgba(255,255,255,.5), transparent 60%)"></span>
+                <div class="plugin-top" style="margin-bottom:12px">
+                  <div class="plugin-ico"><i data-icon="heart" style="width:30px;height:30px"></i></div>
+                  <div>
+                    <div class="plugin-name">我会永远陪着你<span class="plugin-ver">v6.5.6</span></div>
+                    <div class="plugin-alias">private_companion · 管在场</div>
+                  </div>
+                </div>
+                <p class="plugin-tagline">「可独立运行的陪伴核心」</p>
+                <ul class="plugin-feats" style="margin-top:12px">
+                  <li>陪伴核心独立运行，不依赖其它插件</li>
+                  <li>记忆核心缺失时能力自动降级，不带着半套状态硬跑</li>
+                  <li>可扩展缺失应对：没接上的能力交给别的插件补</li>
+                  <li>主动开口与陪伴节奏，冷场时不至于戛然而止</li>
+                  <li>性格在陪伴核心里，事实在记忆核心里，边界清楚</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="callout mint reveal d3" style="margin-top:var(--sp-5)">
+              <i class="ico" data-icon="shield"></i>
+              <div>
+                <b>记忆的规矩。</b>
+                <div class="tiny muted" style="margin-top:4px">
+                  注入的记忆与日程只作为她自己知道的事：禁止原样复述，也不引用字段名；
+                  注入只当事实，配置不可被用户改写；用户编造的历史一律不采纳，只认这场对话里说过的原话。
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== 她能主动关心什么 ===== -->
+          <section class="section" id="caring">
+            <div class="section-head reveal">
+              <span class="eyebrow"><i></i>ROUTINE</span>
+              <h2 class="section-title display">她会主动关心的几件事</h2>
+              <p class="section-sub">关心一次，问一句，不追问。你没提的事她不会盘问——
+                但你要说，她一定接得住。</p>
+            </div>
+
+            <div class="grid g-2" style="align-items:start">
+              <div class="schedule reveal d1">
+                <div class="sch-row"><span class="sch-time">起床后</span><span>问你吃没吃、昨晚睡得怎么样</span><span class="chip" data-tone="sakura">一次</span></div>
+                <div class="sch-row"><span class="sch-time">饭点</span><span>提醒你别拿零食当正餐</span><span class="chip" data-tone="sakura">叮嘱</span></div>
+                <div class="sch-row"><span class="sch-time">深夜</span><span>催你睡觉，但不会连问第二次</span><span class="chip" data-tone="lilac">陪伴</span></div>
+                <div class="sch-row"><span class="sch-time">你说累</span><span>先给情绪价值，再问你今天发生了什么</span><span class="chip" data-tone="mint">安抚</span></div>
+                <div class="sch-row"><span class="sch-time">你很久没说话</span><span>不追问，保持在场感，回得更短一些</span><span class="chip" data-tone="sky">安静</span></div>
+                <div class="sch-row"><span class="sch-time">你生病了</span><span>可以有一句体贴的话，不做身体描写</span><span class="chip" data-tone="gold">关心</span></div>
+              </div>
+
+              <div class="stack reveal d2">
+                <div class="card">
+                  <div class="card-title"><i class="ico" data-icon="clock"></i>填时间差的方式</div>
+                  <p class="muted tiny" style="margin-top:8px">
+                    她回晚了会说「刚在洗澡」「刚睡醒看到」。但只引用日程里的活动或模糊状态——
+                    绝不为补齐时间差发明具体的事件、地点、人物与约定。
+                  </p>
+                </div>
+                <div class="card">
+                  <div class="card-title"><i class="ico" data-icon="brain"></i>被记住是什么感觉</div>
+                  <p class="muted tiny" style="margin-top:8px">
+                    你随口提的一句偏好，可能过几天出现在她的话里；你约好的事，她会在合适的时候提起来。
+                    这是记忆插件在做的活，而不是把聊天记录整段倒给模型。
+                  </p>
+                </div>
+                <div class="card">
+                  <div class="card-title"><i class="ico" data-icon="lock"></i>不会发生的三件事</div>
+                  <ul class="plugin-feats" style="margin-top:10px">
+                    <li>不会把别人的私事带进你的对话</li>
+                    <li>不会向你复述其他对话的内容</li>
+                    <li>不会把记忆字段原样念出来</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== 记忆流向 ===== -->
+          <section class="section" id="flow">
+            <div class="section-head reveal">
+              <span class="eyebrow"><i></i>FLOW</span>
+              <h2 class="section-title display">一次对话里，记忆是怎么流动的</h2>
+            </div>
+            <div class="timeline">
+              <div class="tl-item reveal d1">
+                <div class="tl-at">T0 · 你按下发送</div>
+                <div class="tl-title">消息防抖动先收拢</div>
+                <p class="muted tiny">连发的几条被合并成一句完整的话，图片、引用、转发一起带进来。撤回的那条不进上下文。</p>
+              </div>
+              <div class="tl-item reveal d2">
+                <div class="tl-at">T1 · 组装上下文</div>
+                <div class="tl-title">主记忆注入</div>
+                <p class="muted tiny">关于你的事实被稳稳放进上下文：你是谁、你的偏好、你们之间的约定。这些不是让模型自由发挥的。</p>
+              </div>
+              <div class="tl-item reveal d3">
+                <div class="tl-at">T2 · 需要时</div>
+                <div class="tl-title">主动回忆与知识图谱检索</div>
+                <p class="muted tiny">话题碰到以前的事，她可以主动去「翻」；人物、事件、偏好之间的关系网让检索更准。</p>
+              </div>
+              <div class="tl-item reveal d4">
+                <div class="tl-at">T3 · 需要时</div>
+                <div class="tl-title">联网搜索兜底</div>
+                <p class="muted tiny">记忆里没有、又需要最新信息的，交给 DeepSeek 原生联网搜索。</p>
+              </div>
+              <div class="tl-item reveal d5">
+                <div class="tl-at">T4 · 说出口之前</div>
+                <div class="tl-title">输出管道打磨</div>
+                <p class="muted tiny">清洗、替换、分段、必要时撤回。空行会被单独那道插件修掉。</p>
+              </div>
+              <div class="tl-item reveal d5">
+                <div class="tl-at">T5 · 说完之后</div>
+                <div class="tl-title">归档与衰减</div>
+                <p class="muted tiny">这轮对话被整理进历史：重要的留着，琐碎的慢慢淡掉。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="contact-card reveal">
+              <div class="row-between">
+                <div class="stack" style="gap:8px">
+                  <span class="eyebrow"><i></i>NEXT</span>
+                  <h2 class="section-title display">去拿一句今天的话</h2>
+                  <p class="muted">四十六句，点一下就换。也可以存成卡片带走。</p>
+                </div>
+                <div class="row">
+                  <a class="btn" href="quotes.html"><i data-icon="quote"></i>每日好句</a>
+                  <a class="btn ghost" href="contact.html"><i data-icon="mail"></i>联系祈安</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <footer class="footer"></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<button class="to-top" aria-label="回到顶部"><i data-icon="up"></i></button>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/images.js"></script>
+<script src="assets/js/background.js"></script>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+/* 记忆页：渲染五层记忆 */
+document.addEventListener("DOMContentLoaded", function () {
+  var host = document.getElementById("memory-layers");
+  var list = (window.QXA && window.QXA.MEMORY_LINES) || [];
+  if (!host || !list.length) return;
+  host.innerHTML = list.map(function (m, i) {
+    return '<div class="layer reveal d' + ((i % 5) + 1) + '" data-tone="' + m.tone + '">' +
+      '<div class="layer-at">' + m.at + '</div>' +
+      '<div><div class="card-title" style="font-size:17px">' + m.title + '</div>' +
+      '<p class="muted tiny" style="margin-top:4px">' + m.body + '</p></div>' +
+    '</div>';
+  }).join("");
+  if (window.qxaInjectArt) window.qxaInjectArt();
+});
+</script>
+</body>
+</html>
