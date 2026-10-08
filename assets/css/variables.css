@@ -1,0 +1,151 @@
+/* ============================================================
+   祈小安 · 设计令牌 (Design Tokens)
+   主题：月白 (Moon White) × 温馨可爱二次元
+   ============================================================ */
+
+:root {
+  /* ---------- 月白主色阶 ---------- */
+  --moon-50:  #fdfdfb;
+  --moon-100: #f7fafc;
+  --moon-200: #eef4f8;
+  --moon-300: #e3edf5;
+  --moon-400: #d3e3ef;
+  --moon-500: #bcd3e6;
+  --moon-600: #9dbdd8;
+
+  /* ---------- 点缀色（二次元糖果色） ---------- */
+  --sakura:     #ffb3c9;
+  --sakura-2:   #ff8fb1;
+  --sakura-3:   #ffe3ec;
+  --lilac:      #c9b6f5;
+  --lilac-2:    #a98ff0;
+  --lilac-3:    #ece4ff;
+  --mint:       #a8e6d5;
+  --mint-2:     #6fd2bd;
+  --mint-3:     #e0f7f1;
+  --sky:        #a9d8ff;
+  --sky-2:      #6fb8ff;
+  --sky-3:      #e2f1ff;
+  --gold:       #ffd98e;
+  --gold-2:     #f7bd57;
+  --gold-3:     #fff4dc;
+  --coral:      #ffb59c;
+  --coral-2:    #ff8f6b;
+
+  /* ---------- 文字 ---------- */
+  --ink:        #26384c;
+  --ink-2:      #48607a;
+  --ink-3:      #7b91a6;
+  --ink-4:      #a7b8c8;
+  --ink-invert: #f8fbfe;
+
+  /* ---------- 表面 / 玻璃 ---------- */
+  --surface:        rgba(255, 255, 255, 0.72);
+  --surface-strong: rgba(255, 255, 255, 0.88);
+  --surface-soft:   rgba(255, 255, 255, 0.45);
+  --surface-sunken: rgba(211, 227, 239, 0.42);
+  --border:        rgba(157, 189, 216, 0.38);
+  --border-strong: rgba(157, 189, 216, 0.62);
+  --blur: 18px;
+
+  /* ---------- 阴影 ---------- */
+  --shadow-xs: 0 1px 2px rgba(38, 56, 76, 0.06);
+  --shadow-sm: 0 4px 14px rgba(38, 56, 76, 0.07);
+  --shadow-md: 0 10px 30px rgba(38, 56, 76, 0.10);
+  --shadow-lg: 0 22px 60px rgba(38, 56, 76, 0.14);
+  --shadow-glow-sakura: 0 8px 30px rgba(255, 143, 177, 0.35);
+  --shadow-glow-lilac:  0 8px 30px rgba(169, 143, 240, 0.32);
+  --shadow-glow-mint:   0 8px 30px rgba(111, 210, 189, 0.32);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  /* ---------- 渐变 ---------- */
+  --grad-page: linear-gradient(160deg, #fbfdff 0%, #eef5fb 38%, #e7f0f8 68%, #f6f2fb 100%);
+  --grad-aurora: linear-gradient(120deg, var(--sakura) 0%, var(--lilac) 45%, var(--sky) 100%);
+  --grad-aurora-soft: linear-gradient(120deg, var(--sakura-3) 0%, var(--lilac-3) 45%, var(--sky-3) 100%);
+  --grad-text: linear-gradient(100deg, #6fb8ff 0%, #a98ff0 42%, #ff8fb1 100%);
+  --grad-moon: radial-gradient(circle at 32% 28%, #ffffff 0%, #f2f8fd 42%, #dceaf6 78%, #cfe1f0 100%);
+  --grad-glass: linear-gradient(150deg, rgba(255,255,255,.86) 0%, rgba(255,255,255,.52) 55%, rgba(255,255,255,.72) 100%);
+
+  /* ---------- 圆角 ---------- */
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 26px;
+  --r-xl: 36px;
+  --r-pill: 999px;
+
+  /* ---------- 间距 ---------- */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 22px; --sp-6: 30px; --sp-7: 42px; --sp-8: 60px; --sp-9: 84px;
+
+  /* ---------- 字体 ---------- */
+  --font-cute: "Baloo 2", "Zen Maru Gothic", "Noto Sans SC", "PingFang SC",
+               "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI",
+               "Hiragino Sans GB", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", ui-monospace, "SFMono-Regular",
+               Consolas, monospace;
+
+  /* ---------- 动效 ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 0.18s;
+  --t-mid: 0.34s;
+  --t-slow: 0.66s;
+
+  /* ---------- 布局 ---------- */
+  --sidebar-w: 264px;
+  --topbar-h: 66px;
+  --content-max: 1240px;
+  --z-bg: 0;
+  --z-content: 10;
+  --z-sidebar: 60;
+  --z-topbar: 70;
+  --z-overlay: 90;
+  --z-preloader: 120;
+  --z-cursor: 130;
+}
+
+/* ============================================================
+   夜间模式 · 月夜 (Moonlit Night)
+   ============================================================ */
+html[data-theme="night"] {
+  --moon-50:  #131c2b;
+  --moon-100: #182338;
+  --moon-200: #1e2b42;
+  --moon-300: #26374f;
+  --moon-400: #31465f;
+  --moon-500: #3f5871;
+  --moon-600: #567089;
+
+  --ink:        #eaf2fb;
+  --ink-2:      #c3d5e7;
+  --ink-3:      #93a9c0;
+  --ink-4:      #6d829a8c;
+  --ink-invert: #182338;
+
+  --surface:        rgba(30, 43, 66, 0.72);
+  --surface-strong: rgba(34, 48, 72, 0.9);
+  --surface-soft:   rgba(38, 55, 79, 0.5);
+  --surface-sunken: rgba(16, 24, 38, 0.55);
+  --border:        rgba(120, 158, 200, 0.26);
+  --border-strong: rgba(140, 178, 220, 0.45);
+
+  --sakura-3: #4a2b3c;
+  --lilac-3:  #38305c;
+  --mint-3:   #23443f;
+  --sky-3:    #223a55;
+  --gold-3:   #4a3d22;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.42);
+  --shadow-lg: 0 22px 60px rgba(0, 0, 0, 0.55);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  --grad-page: linear-gradient(160deg, #101827 0%, #16213a 40%, #1b2540 70%, #241f3a 100%);
+  --grad-glass: linear-gradient(150deg, rgba(52,72,104,.72) 0%, rgba(30,43,66,.5) 55%, rgba(38,55,79,.66) 100%);
+  --grad-moon: radial-gradient(circle at 32% 28%, #f6fbff 0%, #dbe9f8 40%, #a9c4de 80%, #8fb0cf 100%);
+  --grad-text: linear-gradient(100deg, #9ad0ff 0%, #c4aaff 45%, #ffa9c4 100%);
+}
