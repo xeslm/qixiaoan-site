@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>走丢了 · 祈小安</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#eef4f8">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/qixiaoan-avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/variables.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>try{var t=localStorage.getItem('qxa-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-page="home">
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-aurora"><span></span><span></span><span></span><span></span></div>
+<div class="bg-grid"></div>
+
+<div class="app">
+  <main class="main" style="min-height:100vh;display:grid;place-items:center">
+    <div class="page-wrap" style="max-width:760px;text-align:center">
+
+      <div class="card reveal" style="padding:clamp(28px,5vw,56px);display:grid;gap:var(--sp-5);justify-items:center">
+        <span class="eyebrow"><i></i>ERROR 404</span>
+
+        <div style="width:min(56%,240px);animation:charFloat 7s var(--ease-soft) infinite">
+          <figure class="photo-frame avatar-frame" style="width:100%;margin:0">
+            <img src="assets/img/qixiaoan-avatar.jpg" alt="祈小安" width="512" height="512">
+          </figure>
+        </div>
+
+        <h1 class="display" style="font-size:clamp(28px,5vw,46px)">
+          这个页面<span class="grad-text">找不到</span>
+        </h1>
+
+        <p class="muted" style="max-width:44ch">
+          你要找的东西不在这儿。可能是地址敲错了，也可能那个页面还没做出来。
+          先回首页吧，她在那边等。
+        </p>
+
+        <div class="row" style="justify-content:center">
+          <a class="btn" href="index.html"><i data-icon="home"></i>回到首页</a>
+          <a class="btn ghost" href="quotes.html"><i data-icon="quote"></i>拿一句好句</a>
+          <a class="btn ghost" href="plugins.html"><i data-icon="plug"></i>看插件装备</a>
+        </div>
+
+        <div class="divider" style="width:100%"></div>
+
+        <div class="small-caps">也可以直接去</div>
+        <div class="row" style="justify-content:center">
+          <a class="chip" href="character.html">小安档案</a>
+          <a class="chip" href="behavior.html">说话方式</a>
+          <a class="chip" href="memory.html">记忆系统</a>
+          <a class="chip" href="contact.html">联系祈安</a>
+        </div>
+      </div>
+
+      <div class="tiny muted" style="margin-top:var(--sp-5)">
+        祈小安 v1.0.1 · 私聊特化型 QQ 机器人 · 作者祈安（QQ 2674488298）
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="assets/js/images.js"></script>
+<script src="assets/js/background.js"></script>
+<script>
+  /* 404 页不需要侧边栏与数据层，只把图标与背景点活 */
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.qxaInjectArt) window.qxaInjectArt();
+    if (window.qxaGuardImages) window.qxaGuardImages();
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  });
+</script>
+</body>
+</html>
