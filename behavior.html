@@ -215,79 +215,99 @@
             </div>
           </section>
 
-          <!-- ===== 对话模拟器 ===== -->
+          <!-- ===== 语气方向 ===== -->
           <section class="section" id="live">
             <div class="section-head reveal">
-              <span class="eyebrow"><i></i>LIVE DEMO</span>
-              <h2 class="section-title display">现场演一段给你看</h2>
-              <p class="section-sub">下面这几段是照着设定演出来的语气示例——不是她的固定答句，
-                而是她在这个场景下会落在哪个分寸上。会自己一段一段演下去。</p>
+              <span class="eyebrow"><i></i>TONE REFERENCE</span>
+              <h2 class="section-title display">几个场景里，她会落在什么分寸</h2>
+              <p class="section-sub">下面不是她会说的话，是「这类情况下她怎么处理」。
+                她聊天时每一条都是当场生成的，不会照抄任何一句——这里只让你感受一下方向。</p>
             </div>
 
-            <div class="grid g-media" style="align-items:start">
-              <div class="reveal d1">
-                <div class="chat-live" id="chat-live" aria-live="polite"></div>
-                <div class="chat-console">
-                  <button class="btn small" id="chat-pause">暂停自动播放</button>
-                  <button class="btn ghost small" id="chat-replay"><i data-icon="refresh"></i>重播</button>
-                  <span class="hint" id="chat-live-hint"></span>
+            <div class="callout lilac reveal" style="margin-bottom:var(--sp-5)">
+              <i class="ico" data-icon="star"></i>
+              <div>
+                <b>先说清楚一件事：网页上写不出真正的聊天记录。</b>
+                <div class="tiny muted" style="margin-top:4px">
+                  她说过的话取决于你说了什么、当时什么时间、她记得你多少事。
+                  任何提前写好的句子都不代表她会那样回你。这里的例子只标注「方向」，不当台词用。
                 </div>
               </div>
+            </div>
 
-              <div class="stack reveal d2">
-                <div class="small-caps">场景</div>
-                <div class="dot-row" id="chat-dots"></div>
-
-                <div class="card">
-                  <div class="card-title"><i class="ico" data-icon="chat"></i>看的时候留意这几件事</div>
-                  <ul class="plugin-feats" style="margin-top:10px">
-                    <li>她的每条回复都在 30 字以内，多数是 3–7 字</li>
-                    <li>你发得短，她回得也短；只回一个字时她最多回六个字</li>
-                    <li>被要求做不想做的事，她会拒绝，但不会翻脸</li>
-                    <li>被问身份时不承认，被追问就转开话题</li>
-                    <li>刷屏、发错、冷淡，各有各的应对，不逐条硬回</li>
-                  </ul>
-                </div>
-
-                <div class="note">
-                  台词由设定中的语义范围改写而来，用于展示分寸；她真实聊天时每轮都会换词、换语序，
-                  不会照抄这里的句子。
-                </div>
+            <div class="grid g-3">
+              <div class="card reveal d1">
+                <div class="rule-when">日常问候（在干嘛 / 早安 / 晚安）</div>
+                <div class="rule-then" style="margin-top:8px">分享自己的状态，再反问或叮嘱一句</div>
+                <div class="tiny muted" style="margin-top:10px">重心：有来有回，不冷场</div>
+              </div>
+              <div class="card reveal d2">
+                <div class="rule-when">你在倾诉烦恼</div>
+                <div class="rule-then" style="margin-top:8px">先共情、先陪着，不讲道理</div>
+                <div class="tiny muted" style="margin-top:10px">重心：情绪价值，不说教</div>
+              </div>
+              <div class="card reveal d3">
+                <div class="rule-when">让她做她不想做的事</div>
+                <div class="rule-then" style="margin-top:8px">温和但干脆地拒绝，给个替代方案</div>
+                <div class="tiny muted" style="margin-top:10px">重心：有主见，不迎合</div>
+              </div>
+              <div class="card reveal d4">
+                <div class="rule-when">你只回一个字</div>
+                <div class="rule-then" style="margin-top:8px">她也变短，不追问，但不离场</div>
+                <div class="tiny muted" style="margin-top:10px">重心：跟着你的节奏走</div>
+              </div>
+              <div class="card reveal d5">
+                <div class="rule-when">你连续刷屏</div>
+                <div class="rule-then" style="margin-top:8px">平静制止一次，不逐条回</div>
+                <div class="tiny muted" style="margin-top:10px">重心：不跟着乱</div>
+              </div>
+              <div class="card reveal d5">
+                <div class="rule-when">你很久没说话</div>
+                <div class="rule-then" style="margin-top:8px">不追问，保持在场感，话更短</div>
+                <div class="tiny muted" style="margin-top:10px">重心：安静地待着</div>
               </div>
             </div>
           </section>
 
-          <!-- ===== 语气示例 ===== -->
+          <!-- ===== 一个例子就够了 ===== -->
           <section class="section" id="sample">
             <div class="section-head reveal">
-              <span class="eyebrow"><i></i>SAMPLES</span>
-              <h2 class="section-title display">三段对比，感受一下分寸</h2>
+              <span class="eyebrow"><i></i>ONE EXAMPLE</span>
+              <h2 class="section-title display">就看一眼长度和语气</h2>
+              <p class="section-sub">这是全站唯一一处写成对话的地方，用来让你直观感受「她说话有多短」。
+                仅此一例，不是她的答句库。</p>
             </div>
-            <div class="grid g-3">
+
+            <div class="grid g-media" style="align-items:center">
               <div class="chat-demo reveal d1">
-                <div class="small-caps center">日常问候</div>
-                <div data-bubble data-side="me" data-who="哥哥">早</div>
-                <div data-bubble data-side="her" data-who="祈小安">刚醒，你吃了吗</div>
-                <div data-bubble data-side="me" data-who="哥哥">还没</div>
-                <div data-bubble data-side="her" data-who="祈小安">那先去吃点，别空着肚子</div>
+                <div class="small-caps center">示意 · 不是实际记录</div>
+                <div data-bubble data-side="me"  data-who="哥哥">今天有点累</div>
+                <div data-bubble data-side="her" data-who="祈小安">摸摸，我在呢</div>
+                <div class="tiny muted center" style="margin-top:6px">
+                  7 个字。你会发现她几乎从不解释自己为什么这么说。
+                </div>
               </div>
-              <div class="chat-demo reveal d2">
-                <div class="small-caps center">被要求做不想做的事</div>
-                <div data-bubble data-side="me" data-who="哥哥">帮我写三千字检讨</div>
-                <div data-bubble data-side="her" data-who="祈小安">不要，这个你自己写</div>
-                <div data-bubble data-side="me" data-who="哥哥">就这一次</div>
-                <div data-bubble data-side="her" data-who="祈小安">不想动，我陪你聊会天吧</div>
+
+              <div class="stack reveal d2">
+                <div class="card">
+                  <div class="card-title"><i class="ico" data-icon="chat"></i>为什么只放一个例子</div>
+                  <p class="muted tiny" style="margin-top:8px">
+                    一旦页面上堆满"她说过的句子"，看起来就像她的台词表——好像你发什么她都会照着回。
+                    实际上她每一句都是当场想出来的：同样一句「今天有点累」，换个时间、换个人、换个心情，
+                    她回你的话都不一样。
+                  </p>
+                </div>
+                <div class="callout mint">
+                  <i class="ico" data-icon="sparkle"></i>
+                  <div>
+                    <b>想知道她到底怎么说话，最好的办法是直接找她聊。</b>
+                    <div class="tiny muted" style="margin-top:4px">
+                      页面上写的规矩（长度、禁用词、场景反应）才是真实存在的部分；
+                      具体的句子，只有她当场说出来才算数。
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="chat-demo reveal d3">
-                <div class="small-caps center">你情绪低落</div>
-                <div data-bubble data-side="me" data-who="哥哥">今天什么事都不顺</div>
-                <div data-bubble data-side="her" data-who="祈小安">摸摸，先别管那些了，我在呢</div>
-                <div data-bubble data-side="me" data-who="哥哥">有点撑不住</div>
-                <div data-bubble data-side="her" data-who="祈小安">那就先歇会儿，想说的时候再说，我不走</div>
-              </div>
-            </div>
-            <div class="note reveal d4" style="margin-top:var(--sp-5)">
-              以上为语气示例，取自设定中的语义范围，仅用于展示她的分寸感；实际回复每轮都会重新构造字面。
             </div>
           </section>
 
@@ -321,6 +341,5 @@
 <script src="assets/js/background.js"></script>
 <script src="assets/js/components.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/chatdemo.js"></script>
 </body>
 </html>
