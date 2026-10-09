@@ -223,11 +223,11 @@
     const host = $("#plugin-grid");
     if (!host || !D.PLUGINS) return;
 
-    const FEAT_LIMIT = 4;
+    const POINT_LIMIT = 3;
     host.innerHTML = D.PLUGINS.map((p, i) => {
-      const feats = p.features.slice(0, FEAT_LIMIT).map((f) => "<li>" + esc(f) + "</li>").join("");
-      const more = p.features.length > FEAT_LIMIT
-        ? '<li class="muted">还有 ' + (p.features.length - FEAT_LIMIT) + " 项，点开看</li>" : "";
+      const pts = (p.points || []).slice(0, POINT_LIMIT).map((f) => "<li>" + esc(f) + "</li>").join("");
+      const more = (p.points || []).length > POINT_LIMIT
+        ? '<li class="muted">还有 ' + (p.points.length - POINT_LIMIT) + " 条，点开看</li>" : "";
       return '' +
         '<article class="card tilt plugin-card reveal d' + ((i % 4) + 1) + '" data-tone="' + p.tone + '" data-plugin="' + p.id + '">' +
           '<span class="card-glow" style="background:radial-gradient(420px circle at var(--x,50%) var(--y,50%), rgba(255,255,255,.5), transparent 60%)"></span>' +
@@ -238,16 +238,15 @@
                 '<span class="plugin-ver">v' + esc(p.version) + "</span>" +
                 '<span class="badge"><span class="dot"></span>已开启</span>' +
               "</div>" +
-              '<div class="plugin-alias">' + esc(p.alias) + " · " + esc(p.since) + "</div>" +
+              '<div class="plugin-tagline" style="margin-top:2px">' + esc(p.tagline) + "</div>" +
             "</div>" +
             '<span class="switch" aria-hidden="true"></span>' +
           "</div>" +
-          '<p class="plugin-tagline">' + esc(p.tagline) + "</p>" +
-          '<p class="plugin-sum">' + esc(p.summary) + "</p>" +
-          '<ul class="plugin-feats">' + feats + more + "</ul>" +
+          '<p class="plugin-sum">' + esc(p.what) + "</p>" +
+          '<ul class="plugin-feats">' + pts + more + "</ul>" +
           '<div class="plugin-foot">' +
-            p.tags.map((t) => '<span class="chip" data-tone="' + p.tone + '">' + esc(t) + "</span>").join("") +
-            '<button class="btn ghost small" data-detail="' + p.id + '">查看详情</button>' +
+            '<span class="chip">' + esc(p.repo.split(" / ")[1] || p.repo) + "</span>" +
+            '<button class="btn ghost small" data-detail="' + p.id + '">看它具体做什么</button>' +
           "</div>" +
         "</article>";
     }).join("");
@@ -275,19 +274,22 @@
     try {
       if (location.hash !== "#plugin=" + id) history.replaceState(null, "", "#plugin=" + id);
     } catch (e) {}
+    const vn = (D.VERSION_NOTES || []).find((v) => p.name.indexOf(v.name) === 0 || v.name.indexOf(p.name) === 0);
     $("#pm-title").textContent = p.name;
     $("#pm-body").innerHTML =
-      '<div class="row" style="gap:8px;margin-bottom:14px">' +
-        '<span class="chip" data-tone="' + p.tone + '">v' + esc(p.version) + "</span>" +
-        '<span class="chip">' + esc(p.alias) + "</span>" +
-        '<span class="chip">' + esc(p.since) + "</span>" +
-        '<span class="chip">' + esc(p.repo) + "</span>" +
-      "</div>" +
-      '<p class="plugin-tagline" style="font-size:15px">' + esc(p.tagline) + "</p>" +
-      '<p style="margin:14px 0" class="muted">' + esc(p.summary) + "</p>" +
-      '<div class="small-caps" style="margin-bottom:8px">功能清单</div>' +
-      '<ul class="plugin-feats">' + p.features.map((f) => "<li>" + esc(f) + "</li>").join("") + "</ul>" +
-      '<div class="note" style="margin-top:16px">版本信息取自插件面板显示值，功能描述依据插件说明整理，细节以插件实际配置为准。</div>';
+      '<p class="plugin-tagline" style="font-size:16px;margin-bottom:14px">' + esc(p.tagline) + "</p>" +
+      '<p style="margin:0 0 18px">' + esc(p.what) + "</p>" +
+      '<div class="small-caps" style="margin-bottom:8px">特点</div>' +
+      '<ul class="plugin-feats">' + (p.points || []).map((f) => "<li>" + esc(f) + "</li>").join("") + "</ul>" +
+      '<div class="divider" style="margin:20px 0"></div>' +
+      '<dl class="kv">' +
+        "<dt>当前版本</dt><dd>v" + esc(p.version) + (vn && vn.repo !== ("v" + p.version) && vn.repo !== p.version
+          ? ' <span class="tiny muted">（仓库最新：' + esc(vn.repo) + "）</span>" : "") + "</dd>" +
+        "<dt>出处</dt><dd>" + esc(p.repo) + "</dd>" +
+        "<dt>插件标识</dt><dd class=\"mono tiny\">" + esc(p.alias) + "</dd>" +
+      "</dl>" +
+      '<div class="note" style="margin-top:18px">插件由第三方作者开发，本站只介绍它在她身上起什么作用。' +
+      "版本号按面板显示值写，细节以插件自身配置为准。</div>";
     modal.classList.add("show");
   }
 
@@ -330,10 +332,10 @@
         const p = (D.PLUGINS || []).find((x) => x.id === card.getAttribute("data-plugin"));
         let ok = true;
         if (active !== "all") {
-          ok = !!p && (p.tags.includes(active) || p.tone === active);
+          ok = !!p && p.tone === active;
         }
         if (ok && q) {
-          const hay = (p.name + p.alias + p.tagline + p.summary + p.tags.join("")).toLowerCase();
+          const hay = (p.name + p.alias + p.tagline + p.what + (p.points || []).join("")).toLowerCase();
           ok = hay.includes(q);
         }
         card.style.display = ok ? "" : "none";
@@ -429,7 +431,7 @@
           "<span><b>" + esc(v.name) + "</b></span>" +
           '<span class="mono tiny">v' + esc(v.panel.replace(/^v/, "")) + "</span>" +
           '<span class="mono tiny' + (same ? " muted" : "") + '">' + esc(v.repo) + "</span>" +
-          '<span class="tiny muted">' + esc(v.note) + "</span>" +
+          '<span class="tiny ' + (same ? "muted" : "") + '">' + (same ? "一致" : "仓库已更新") + "</span>" +
         "</div>";
       }).join("");
 
